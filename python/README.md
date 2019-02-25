@@ -15,6 +15,9 @@ Change your current folder to `indy-agent/python`.
 
 ### 1. Using Docker
 
+> **Note:** All of the following docker commands need to be run with `sudo` on Linux unless you've configured your user
+> to be able to run docker commands without it.
+
 * Make sure you have Docker installed
 * Build docker image : `$ make docker-build`
 * In one instance of your terminal : `$ make docker-start PORT=8094` and don't close it
@@ -24,6 +27,10 @@ Change your current folder to `indy-agent/python`.
 If agent is not reachable with `localhost`, try with the internal docker container IP :
 * Run `make docker-getip PORT=8094` to get the ID address of the first container (for example : 172.17.0.2)
 * And run `make docker-getip PORT=8095` to get the ID address of the second container (for example : 172.17.0.3)
+
+On Linux and wanting to connect with the docker host (e.g. when running the dockerized agent against the test suite
+running locally), you may need to set the network mode to `"host"`. A shortcut for this is available: `$ make
+docker-start-linux`.
 
 ### 2. Using dev mode
 
@@ -49,7 +56,8 @@ the following scenario (in my case `Agent Offer Endpoint : "http://172.17.0.3:80
 
 * In agent A browser tab type : `Alice` and any password
 * In agent B browser tab type : `Bob` and any password
-* In agent A browser tab click button send connection offer : Type `AliceToBobConnection` and `/offer` path of the second agent (in my case it was http://172.17.0.3:8095/offer), click `send connection offer`
+* In agent A browser tab click button send connection offer : Type `AliceToBobConnection` and `/offer` path of the
+  second agent (in my case it was http://172.17.0.3:8095/offer), click `send connection offer`
 * In agent B browser tab click on the `view` button and check the received message : Click `send request`
 * In agent A browser tab click on the `view` button and check the received message : Click `send response`
 * In agent B browser tab click on the `view` button and check the received message
