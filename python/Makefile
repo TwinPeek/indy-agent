@@ -7,3 +7,6 @@ docker-start:
 
 docker-getip:
 	-docker container inspect indy-agent_$$PORT | grep "\"IPAddress\"" | tail -n 1 | sed "s/[IPAddress|:|\"|,| ]//g"
+
+docker-start-linux:
+	-docker run -it -p $$PORT:$$PORT -e PORT=$$PORT --name indy-agent_$$PORT --network="host" indy-agent
